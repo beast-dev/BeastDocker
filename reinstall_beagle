@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root using sudo"
+  exit
+fi
+
+export LIBRARY_PATH=/usr/local/cuda/lib64/stubs:${LIBRARY_PATH}
+cd /root/beagle-lib
+./configure "$@"
+make install
